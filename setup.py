@@ -6,11 +6,11 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
-    name="keboola-upload",
+    name="keboola_api",
     version="0.1.0",
     author="Anthony Alteirac",
     author_email="anthony.alteirac@snowflake.com",
-    description="Wrapper around Kebolla python client to upload files to stage",
+    description="Wrapper around Kebolla python client to list tables, buckets and upload files to stage",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(where="src"),

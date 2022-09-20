@@ -38,7 +38,7 @@ def list_tables(keboola_URL,keboola_key):
 frontend_dir = (Path(__file__).parent / "frontend").absolute()
 
 _component_func = components.declare_component(
-	"keboola-upload", path=str(frontend_dir)
+	"keboola_api", path=str(frontend_dir)
 )
 
 
