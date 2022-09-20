@@ -5,7 +5,7 @@ import setuptools
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
-setuptools.setup(
+setuptools.setup( 
     name="streamit-keboola-api",
     version="0.1.2",
     author="Anthony Alteirac",
