@@ -1,6 +1,6 @@
 # keboola-upload
 
-Wrapper around Keboola python client to list tables, bucklets and upload files to stage
+Wrapper around Keboola python client to list tables, buckets and upload files to stage
 
 UPLOAD IS NOT WORKING YET, JUST NEED TO FIX SOME PATH ISSUES
 
@@ -19,7 +19,7 @@ import keboola_api as kb
 with st.expander("Keboola Tables"):
         tables=kb.keboola_table_list(
                 keboola_URL="https://connection.north-europe.azure.keboola.com",
-                keboola_key='9465-37349-jZk80TMbSzai08zfjcoB1bYd1eCJWn6LWDT2TueB',
+                keboola_key='<key>',
                 label="GET TABLES",
                 key="zero"
         )
@@ -27,7 +27,7 @@ with st.expander("Keboola Tables"):
     with st.expander("Keboola Buckets"):    
         bck=kb.keboola_bucket_list(
                 keboola_URL="https://connection.north-europe.azure.keboola.com",
-                keboola_key='9465-37349-jZk80TMbSzai08zfjcoB1bYd1eCJWn6LWDT2TueB',
+                keboola_key='<key>',
                 label="GET BUCKETS",
                 key="one"
         )
