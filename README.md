@@ -5,7 +5,7 @@ Streamlit custom component wrapping Keboola python client to list tables, bucket
 ## Installation instructions 
 
 ```sh
-pip install streamit-keboola-api
+pip install streamlit-keboola-api
 ```
 
 ## Usage instructions
