@@ -45,8 +45,8 @@ _component_func = components.declare_component(
 def keboola_table_list(
     keboola_URL: str,
     keboola_key:str,
+    key: str,
     label:Optional[str] = None,
-    key: Optional[str] = None,
 ):
 
     component_value = _component_func(label=label,default="",key=key)  
@@ -62,8 +62,8 @@ def keboola_table_list(
 def keboola_bucket_list(
     keboola_URL: str,
     keboola_key:str,
+    key: str,
     label:Optional[str] = None,
-    key: Optional[str] = None,
 ):
 
     component_value = _component_func(label=label,default="",key=key)  
@@ -83,9 +83,9 @@ def keboola_upload(
     keboola_bucket_id:str,
     keboola_file_path:str,
     keboola_primary_key:list,
+    key: str,
     action: Optional[str] = "UPLOAD",
     label:Optional[str] = None,
-    key: Optional[str] = None,
 ):
     if label is None:
         label=action 
