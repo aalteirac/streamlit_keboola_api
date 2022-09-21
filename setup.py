@@ -6,8 +6,8 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup( 
-    name="streamit-keboola-api",
-    version="0.1.6",
+    name="streamlit-keboola-api",
+    version="0.1.0",
     author="Anthony Alteirac",
     author_email="anthony.alteirac@snowflake.com",
     description="Wrapper around Kebolla python client to list tables, buckets and upload files to stage",
