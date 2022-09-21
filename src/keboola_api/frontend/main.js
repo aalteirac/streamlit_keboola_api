@@ -4,16 +4,22 @@ function sendValue(value) {
 }
 
 function onRender(event) {
-  // if (!window.rendered) {
-    const {label,key} = event.detail.args;
-    var upload = document.getElementById("upload");
-    upload.textContent=label;
-    upload.onclick = (event) =>{
-      sendValue(Math.random()*1000)
+    const {label,key,api_only} = event.detail.args;
+    if(api_only==true){
+      if (!window.rendered) {
+        sendValue(Math.random()*1000);
+        Streamlit.setFrameHeight(0);
+      }
+    }
+    else{
+      document.getElementById("root").style.display='block'
+      var upload = document.getElementById("upload");
+      upload.textContent=label;
+      upload.onclick = (event) =>{
+        sendValue(Math.random()*1000)
+      } 
     } 
-    window.rendered = true
-  // }
-  
+    window.rendered = true 
 }
 
 

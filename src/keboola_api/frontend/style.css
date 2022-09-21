@@ -1,7 +1,10 @@
 /* Container needed to position the button. Adjust the width as needed */
-.container {
+  #root{
+    display: none;
+  }
+  .container {
     position: relative;
-    width: 50%;
+    
   }
   
   /* Make the image responsive */

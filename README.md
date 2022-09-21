@@ -1,6 +1,6 @@
 # streamlit-keboola-api
 
-Streamlit custom component wrapping Keboola python client to list tables, buckets and upload files to stage.
+Streamlit custom component wrapping Keboola python client to list tables, buckets, delete table, delete bucket and upload files to stage.
 
 ## Installation instructions 
 
@@ -32,8 +32,10 @@ def main():
                 keboola_key='<key>',
                 # Button Label
                 label="GET TABLES",
-                # Key is mandatory
+                # Key is mandatory and has to be unique
                 key="zero"
+                # if api_only= True than the button is not shown and the api call is fired directly
+                api_only=False
         )
         st.selectbox("Tables",options= list(map(lambda v: v['id'], tables)))
     with st.expander("Keboola Buckets"):    
@@ -42,8 +44,10 @@ def main():
                 keboola_key='<key>',
                 # Button Label
                 label="GET BUCKETS",
-                # Key is mandatory
+                # Key is mandatory and has to be unique
                 key="one"
+                # if api_only= True than the button is not shown and the api call is fired directly
+                api_only=False
         )
         st.selectbox("Buckets",options= list(map(lambda v: v['id'], buckets)))
     url = "http://www.dickimaw-books.com/latex/admin/html/examples/booklist.csv"
@@ -62,8 +66,10 @@ def main():
                 keboola_file_path=fpath,
                 keboola_primary_key=['id'],
                 # Button Label
-                action="UPLOAD FILE",
-                # Key is mandatory
+                label="UPLOAD FILE",
+                # Key is mandatory and has to be unique
                 key="two"
+                # if api_only= True than the button is not shown and the api call is fired directly
+                api_only=False
             )
             value
