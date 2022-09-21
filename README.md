@@ -46,6 +46,8 @@ def main():
                 key="one"
         )
         st.selectbox("Buckets",options= list(map(lambda v: v['id'], buckets)))
+    url = "http://www.dickimaw-books.com/latex/admin/html/examples/booklist.csv"
+    st.write("Get a sample CSV here [link](%s)" % url)    
     fl=st.file_uploader("Drop a csv...",type="csv")    
     if hasattr(fl,'name'):
         # Streamlit uploader doesn't save the file to disk, only in mem. 

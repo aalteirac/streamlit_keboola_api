@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup( 
     name="streamit-keboola-api",
-    version="0.1.5",
+    version="0.1.6",
     author="Anthony Alteirac",
     author_email="anthony.alteirac@snowflake.com",
     description="Wrapper around Kebolla python client to list tables, buckets and upload files to stage",
