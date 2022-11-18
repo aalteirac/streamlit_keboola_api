@@ -11,6 +11,7 @@ _component_func = components.declare_component(
 	"keboola_api", path=str(frontend_dir)
 )
 
+
 def upload(url,key,table_name,bucket_id,file_path,primary_key):
     client = Client(url, key)
     try:
@@ -18,6 +19,23 @@ def upload(url,key,table_name,bucket_id,file_path,primary_key):
                             bucket_id=bucket_id,
                             file_path=file_path,
                             primary_key=primary_key) + " successfully created!!"
+    except Exception as e:
+        return str(e)   
+
+def load(url,key,table_id,file_path,is_incremental=False, delimiter=',',
+             enclosure='"', escaped_by='', columns=None,
+             without_headers=False):
+    client = Client(url, key)
+    try:
+        _= client.tables.load(table_id=table_id,
+                            file_path=file_path,
+                            is_incremental=is_incremental, 
+                            delimiter=delimiter,
+                            enclosure=enclosure, 
+                            escaped_by=escaped_by,
+                            columns=columns,
+                            without_headers=without_headers)
+        return f"{table_id} has been successfully loaded!!"
     except Exception as e:
         return str(e)   
 
@@ -34,6 +52,57 @@ def list_tables(keboola_URL,keboola_key):
         return client.tables.list()
     except Exception as e:
         return str(e)  
+
+def create_or_update(keboola_URL,
+                     keboola_key,
+                     table_name,
+                     bucket_id,
+                     file_path,
+                     primary_key,
+                     is_incremental=False, 
+                     delimiter=',',
+                     enclosure='"', 
+                     escaped_by='', 
+                     columns=None,
+                     without_headers=False):
+    
+    client = Client(keboola_URL, keboola_key)
+    # check whether a table in the bucket exists. If so, retrieve its table_id
+    try:
+        try:
+            tables = client.tables.list()
+
+        except Exception as e:
+            return str(e)
+        # there will be 0 or 1 hit
+        table_def = list(filter(lambda x: x['bucket']['id']==bucket_id and x['name']==table_name, tables))
+        if table_def:
+            table_id = table_def[0]['id']
+            # table already exists --> load
+            try:
+                _= client.tables.load(table_id=table_id,
+                                    file_path=file_path,
+                                    is_incremental=is_incremental, 
+                                    delimiter=delimiter,
+                                    enclosure=enclosure, 
+                                    escaped_by=escaped_by,
+                                    columns=columns,
+                                    without_headers=without_headers) 
+                return f"{table_name} has been updated."
+            except Exception as e:
+                return str(e)    
+        else:
+            # table does not exist --> create
+            try:
+                return client.tables.create(name=table_name,
+                                    bucket_id=bucket_id,
+                                    file_path=file_path,
+                                    primary_key=primary_key) + " successfully created!!"
+            except Exception as e:
+                return str(e)   
+    except Exception as e:
+        return str(e)         
+
 
 def delete_table(keboola_URL,keboola_key,keboola_table_id):
     client = Client(keboola_URL, keboola_key)
