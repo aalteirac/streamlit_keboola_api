@@ -236,4 +236,28 @@ def keboola_upload(
         return st.session_state['__'+key]
     return ""
 
+def keboola_create_update(
+    keboola_URL: str,
+    keboola_key:str,
+    keboola_table_name:str,
+    keboola_bucket_id:str,
+    keboola_file_path:str,
+    keboola_primary_key:list,
+    key: str,
+    api_only:Optional[bool] = False,
+    label:Optional[str] = None,
+):
+    component_value = _component_func(label=label,default="",key=key,api_only=api_only)  
+    if st.session_state.get(key) is not None:
+        if st.session_state.get('_'+key)!=st.session_state[key]:
+            st.session_state['_'+key]=component_value
+            if api_only==False:
+                with st.spinner("Updating..."):
+                    ret= create_or_update(keboola_URL,keboola_key,keboola_table_name,keboola_bucket_id,keboola_file_path,keboola_primary_key)
+            else:
+                ret= create_or_update(keboola_URL,keboola_key,keboola_table_name,keboola_bucket_id,keboola_file_path,keboola_primary_key)       
+            st.session_state['__'+key]=ret
+            return ret
+        return st.session_state['__'+key]
+    return ""
   
